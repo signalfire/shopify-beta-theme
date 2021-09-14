@@ -1,0 +1,18 @@
+<div class="bg-black py-2">
+  <div class="container lg:max-w-screen-lg mx-auto">
+    <div class="grid grid-cols-2 gap-4">
+      <div class="col-span-2 lg:col-span-1">
+        <ul class="text-white uppercase text-xs">
+          <li class="inline-block mr-2">{{ 'common.bar.free_shipping' | t }}</li>
+          <li class="inline-block mr-2">{{ 'common.bar.money_back' | t }}</li>
+          <li class="inline-block">{{ 'common.bar.online_support' | t }}</li>
+        </ul>
+      </div>
+      <div class="col-span-2 lg:col-span-1 flex justify-end">
+        <ul class="">
+          <li class="inline-block text-xs text-white uppercase">{{ 'common.bar.email_label' | t }} <a href="mailto::{{ shop.email }}">{{ shop.email }}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

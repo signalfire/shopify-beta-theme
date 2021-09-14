@@ -1,0 +1,70 @@
+<footer class="bg-beta-gray-darkest text-beta-gray-light py-8">
+  <div class="container lg:max-w-screen-lg mx-auto border-b border-beta-gray-dark mb-4 pb-5">
+    <div class="grid grid-cols-12 gap-4">
+      <div class="col-span-12 lg:col-span-6">
+        <h2 class="font-display text-lg text-white uppercase mb-4">{{ 'common.footer.first_know' | t }}</h2>
+        <p>{{ 'common.footer.sign_up_html' | t }}</p>
+      </div>
+      <div class="col-span-12 lg:col-span-4">
+        <div class="grid grid-cols-4">
+          <div class="col-span-3 lg:col-span-2"><input type="text" class="w-full bg-beta-gray-dark border-beta-gray-dark text-sm text-gray-mid h-12" placeholder="{{ 'common.footer.subscribe_placeholder' | t }}"/></div>
+          <div class="col-span-3 lg:col-span-1"><input type="button" class="w-full h-12 bg-black font-display uppercase text-white text-lg" type="submit" value="{{ 'common.footer.subscribe_submit' | t }}"></div>
+        </div>
+      </div>
+      <div class="col-span-12 lg:col-span-2">
+        <ul class="">
+          <li class="inline-flex w-12 h-12 bg-beta-gray-dark text-white text-lg items-center justify-center"><a href="{{ settings.facebook_url }}"><i class="fab fa-facebook-f"></i><span class="hidden">Facebook</span></a></li>
+          <li class="inline-flex w-12 h-12 bg-beta-gray-dark text-white text-lg items-center justify-center"><a href="{{ settings.twitter_url }}"><i class="fab fa-twitter"></i><span class="hidden">Twitter</span></a></li>
+          <li class="inline-flex w-12 h-12 bg-beta-gray-dark text-white text-lg items-center justify-center"><a href="{{ settings.instagram_url }}"><i class="fab fa-instagram"></i><span class="hidden">Instagram</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container lg:max-w-screen-lg mx-auto border-b border-beta-gray-dark mb-4 pb-5">
+    <div class="grid grid-cols-12 gap-4">
+      <div class="col-span-12 lg:col-span-3">
+        <h2 class="font-display text-lg text-white uppercase mb-4">{{ 'common.footer.contact_information' | t }}</h2>
+        <h3 class="text-sm text-white uppercase">{{ 'common.footer.address' | t }}</h3>
+        <p class="mb-2">{{ shop.address.summary }}</p>
+        <h3 class="text-sm text-white uppercase">{{ 'common.footer.phone' | t }}</h3>
+        <p class="text-sm mb-2">{{ shop.phone }}</p>
+        <h3 class="text-sm text-white uppercase">{{ 'common.footer.email' | t }}</h3>
+        <p class="text-sm">{{ shop.email }}</p>
+      </div>
+      <div class="col-span-12 lg:col-span-5">
+        <h2 class="font-display text-lg text-white uppercase mb-4">{{ 'common.footer.my_account' | t }}</h2>
+        {% if shop.customer_accounts_enabled %}
+          <ul>
+            {% if customer %}
+              <li><a href="/account">{{ 'common.footer.account' | t }}</a></li>
+              <li>{{ 'Log Out' | customer_logout_link }}</li>
+            {% else %}
+              <li>{{ 'Log In ' | customer_login_link }}</li>
+              <li>{{ 'Register' | customer_register_link }}</li>
+            {% endif %}
+          </ul>
+        {% endif %}                 
+      </div>
+      <div class="col-span-12 lg:col-span-4">
+        <h2 class="font-display text-lg text-white uppercase mb-4">{{ 'common.footer.categories' | t }}</h2>
+        <ul>
+          {% for collection in collections %}
+            {% unless collection.handle == 'frontpage' %}
+              <li><a href="{{ collection.url }}" title="{{collection.title}}">{{ collection.title }}</a></li>
+            {% endunless %}
+          {% endfor %}            
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container lg:max-w-screen-lg mx-auto">
+    <div class="grid grid-cols-2 gap-4">
+      <div class="col-span-2 lg:col-span-1">
+        <p>{{ shop.name | capitalize }} &copy; {{ "now" | date: "%Y" }}. {{ 'shopify.checkout.general.all_rights_reserved' | t }}</p>
+      </div>
+      <div class="col-span-2 lg:col-span-1">
+        <p class="text-right"><i class="fab fa-cc-visa text-2xl mr-2"></i><i class="fab fa-cc-mastercard text-2xl mr-2"></i><i class="fab fa-cc-paypal text-2xl mr-2"></i><i class="fab fa-cc-amazon-pay text-2xl"></i></p>
+      </div>
+    </div>
+  </div>      
+</footer>

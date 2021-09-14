@@ -1,0 +1,61 @@
+<section class="mb-4">
+  <form action="/cart" method="post" novalidate>
+    <div class="container lg:max-w-screen-lg mx-auto">
+      <h2 class="text-2xl mb-4">{{'shopify.checkout.general.cart' | t }}</h2>
+      {% if cart.item_count > 0 %}
+        <div class="grid grid-cols-12 gap-4 mb-4">
+          <div class="col-span-1"><i class="fas fa-times-circle"></i></div>
+          <div class="col-span-5">{{ 'cart.header_product' | t }}</div>
+          <div class="col-span-2">{{ 'cart.header_price' | t }}</div>
+          <div class="col-span-2">{{ 'cart.header_qty' | t }}</div>
+          <div class="col-span-2">{{ 'cart.header_total' | t }}</div>
+          {% for item in cart.items %}
+            <div class="col-span-1">
+              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><i class="fas fa-times-circle text-red-600"></i></a>
+            </div>
+            <div class="col-span-5">
+              <div class="grid grid-cols-3 gap-4">
+                <div class="cols-span-3 lg:col-span-1">
+                  <a href="{{ item.url | within: collections.all }}" class="block">
+                    <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}" class="w-full">
+                  </a>                                
+                </div>
+                <div class="col-span-3 lg:col-span-2">
+                  <p><a href="{{ item.url }}">{{ item.product.title }}</a></p>
+                  <p>{{ item.variant.title }}</p>                    
+                </div>
+              </div>
+            </div>
+            <div class="col-span-2">{{ item.price | money }}</div>
+            <div class="col-span-2">
+              <div class="grid grid-cols-3 gap-4">
+                <div class="col-span-1">
+                  <button class="clear" data-id="updates_{{ item.key }}"><i class="fas fa-minus"></i></button>
+                </div>
+                <div class="col-span-1">            
+                  <input type="text" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0" class="w-full">  
+                </div>
+                <div class="col-span-1">
+                  <button class="clear" data-id="updates_{{ item.key }}"><i class="fas fa-plus"></i></button>
+                </div>      
+              </div>                  
+            </div>
+            <div class="col-span-2">
+              {% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
+              <span>{{ 'cart.item_sub_total' | t }}: </span>{{ item.line_price | money }}
+              {% for discount in item.discounts %}<span>{{ 'cart.item_discount' | t }}: </span>{{ discount.title }}{% endfor %}                        
+            </div>
+          {% endfor %}
+          <div class="col-span-12">{{ 'cart.cart_sub_total' | t }}</div>
+          <div class="col-span-12"><span>{{ 'cart.cart_total' | t }}: </span>{{ cart.total_price | money }}</div>
+        </div>
+        <div>        
+          <button type="submit" name="checkout" class="border-2 border-black bg-black py-2 px-4 text-white uppercase font-display mr-4">{{ 'cart.checkout_button' | t }}</button>
+          <button type="submit" name="update" class="bg-white border-2 border-black py-2 px-4 text-black uppercase font-display hover:bg-black hover:text-white">{{ 'cart.checkout_update_button' | t }}</button>
+        </div>
+      {% else %}
+        <p>{{ 'cart.cart_empty' | t }}</p>
+      {% endif %}
+    </div>
+  </form>
+</section>

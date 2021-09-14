@@ -1,0 +1,56 @@
+{
+  "general": {
+    "404": {
+      "title": "Whoops",
+      "subtext_html": "The page you were looking for does not exist"
+    }
+  },
+  "common": {
+    "bar": {
+      "free_shipping": "Free Shipping & Returns",
+      "money_back": "Money Back Guarantee",
+      "online_support": "Online Support 24\/7",
+      "email_label": "Email Us"
+    },
+    "header": {
+      "search_placeholder": "Search...",
+      "home_label": "Home",
+      "cart_item": "item",
+      "cart_items": "items"
+    },
+    "footer": {
+      "first_know": "Be the first to know",
+      "sign_up_html": "Get all the latest product information.",
+      "subscribe_placeholder": "Subscribe...",
+      "subscribe_submit": "Submit",
+      "contact_information": "Contact Information",
+      "my_account": "My Account",
+      "categories": "Categories",
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "account": "Account"
+    }
+  },
+  "cart": {
+    "cart_total": "Cart Total",
+    "cart_sub_total": "Sub Total",
+    "cart_empty": "No items in cart",
+    "header_product": "Product",
+    "header_price": "Price",
+    "header_qty": "Qty",
+    "header_total": "Total",
+    "checkout_button": "Checkout",
+    "checkout_update_button": "Update",
+    "item_discount": "Discount",
+    "item_sub_total": "Sub Total",
+    "item_price": "Price"
+  },
+  "shopify": {
+    "checkout": {
+      "general": {
+        "all_rights_reserved": "All Rights Reserved"
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{% paginate blog.articles by 6 %}
+
+<section class="">
+  <div class="container lg:max-w-screen-lg mx-auto">
+    <h2 class="text-2xl mb-4">{{ blog.title }}</h2>
+    <div class="grid grid-cols-3 gap-4 mb-4">
+      {% for article in blog.articles %}
+        <article class="col-span-3 lg:col-span-1">
+          <p class="">
+            <a href="{{ article.url }}" class="mb-4 block">
+              <img src="{{ article.image.src | img_url: '500x' }}" alt="{{article.title}}" title="{{article.title}}" class="w-full"/>
+            </a>
+          </p>
+          <h2 class="mb-4 text-xl">
+            <a href="{{ article.url }}">{{ article.title }}</a>
+          </h2>
+          {% if article.excerpt.size > 0 %}
+            <p class="">{{ article.excerpt | strip_html | truncatewords: 15 }}</p>
+          {% else %}
+            <p class="">{{ article.content | strip_html | truncatewords: 15 }}</p>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+  <section class="pagination mb-4">
+    <div class="container lg:max-w-screen-lg mx-auto">
+      {% if paginate.pages > 1 %}
+        {{ paginate | default_pagination }}
+      {% endif %}
+    </div>
+  </section>
+{% endpaginate %}

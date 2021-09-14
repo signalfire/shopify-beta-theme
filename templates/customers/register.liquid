@@ -1,0 +1,56 @@
+<!-- /templates/customers/register.liquid -->
+<section class="">
+  <div class="container lg:max-w-screen-lg mx-auto">
+    <div class="grid grid-cols-2 gap-4">
+      <div class="col-span-2 lg:col-span-1">
+        <h2 class="text-2xl mb-4">Register an Account</h2>
+        {% form 'create_customer' %}
+          {% if form.errors %}
+            <div class="border border-red-600 bg-red-200 text-red-900 p-2 mb-4">
+              <ul>
+              {% for field in form.errors %}
+                {% if field == 'form' %}
+                  <li>{{ form.errors.messages[field] }}</li>
+                {% else %}
+                  <li>{{ form.errors.translated_fields[field] | capitalize }} - {{ form.errors.messages[field] }}</li>
+                {% endif %}
+              {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+          <div class="grid grid-cols-4 gap-4 mb-4">
+            <div class="col-span-4 lg:col-span-1 flex items-center">
+              <label for="first_name">First Name</label>
+            </div>
+            <div class="col-span-4 lg:col-span-3">
+              <input type="text" value="" name="customer[first_name]" size="30" class="w-full"/>
+            </div>
+            <div class="col-span-4 lg:col-span-1">
+              <label for="last_name">Last Name</label>
+            </div>
+            <div class="col-span-4 lg:col-span-3">
+              <input type="text" value="" name="customer[last_name]" size="30" class="w-full"/>
+            </div>
+            <div class="col-span-4 lg:col-span-1">
+              <label for="email">Email Address</label>
+            </div>
+            <div class="col-span-4 lg:col-span-3">
+              <input type="email" value="" name="customer[email]" size="30" class="w-full"/>
+            </div>
+            <div class="col-span-4 lg:col-span-1">
+              <label for="password">Password</label>
+            </div>
+            <div class="col-span-4 lg:col-span-3">
+              <input type="password" value="" name="customer[password]" size="30" class="w-full"/>
+            </div>           
+            <div class="col-span-4 lg:col-span-1"></div>
+            <div class="col-span-4 lg:col-span-3">
+              <input type="submit" class="bg-black py-2 px-4 text-white uppercase font-display" value="Create An Account" />
+            </div>
+          </div>
+        {% endform %}
+      </div>
+      <div class="col-span-2 lg:col-span-1"></div>
+    </div>
+  </div>
+</section>

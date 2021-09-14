@@ -1,0 +1,15 @@
+<!-- /templates/customers/account.liquid -->
+<section id="customer_orders">
+  <div class="container lg:max-w-screen-lg mx-auto">
+    {% paginate customer.orders by 10 %}
+    {% if customer.orders.size != 0 %}
+
+      <!-- Content for account.liquid page -->
+
+    {% else %}
+      <p>You haven't placed any orders yet.</p>
+    {% endif %}
+    {{ paginate | default_pagination }}
+    {% endpaginate %}
+  </div>
+</section>

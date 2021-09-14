@@ -1,0 +1,25 @@
+{
+  "name": "beta-theme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "css:dev": "NODE_ENV=development npx postcss css/application.css -o ../assets/application.css",
+    "css:prod": "NODE_ENV=production npx postcss css/application.css -o ../assets/application.css",
+    "js": "npx parcel build js/application.js --out-dir ../assets"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.3.1",
+    "parcel-bundler": "^1.12.5",
+    "postcss": "^8.3.6",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.2.7"
+  },
+  "dependencies": {
+    "@tailwindcss/forms": "^0.3.3"
+  }
+}

@@ -1,0 +1,70 @@
+{% schema %}
+  {
+    "name": "Slider",
+    "class": "slider",
+    "tag": "section",
+    "max_blocks": 6,
+    "blocks": [{
+      "type": "slide",
+      "name": "Slide",
+      "limit": 6,
+      "settings": [{
+        "id": "image",
+        "type": "image_picker",
+        "label": "Image"
+      }, {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      }, {
+        "id": "subtitle",
+        "type": "text",
+        "label": "Sub Title"
+      }, {
+        "id": "link",
+        "type": "url",
+        "label": "URL"
+      }]
+    }]
+  }
+{% endschema %}
+{% javascript %}
+  $(document).ready(function(){
+    var total = 0;
+    var current = 0;
+    setInterval(function(){
+      total = $('.slide').length;
+      $('.slide').each(function(index){
+        if(index === current){
+          $(this).animate({display:'block'}, 1000);
+        }else{
+          $(this).animate({display:'none'}, 1000);
+        }
+      })
+      if(current + 1 < total){
+        current++;
+      }else{
+        current = 0;
+      }
+    }, 4000);
+  })
+{% endjavascript %}
+<div class="container lg:max-w-screen-lg mx-auto">
+  {% for block in section.blocks %}
+    {% if forloop.first == true %}
+      <div class="mb-4 relative" style="display:block" {{ block.shopify_attributes }}>
+    {% else %}
+      <div class="mb-4" style="display:none"  {{ block.shopify_attributes }}>
+    {% endif %}
+      {% case block.type %}
+      {% when 'slide' %}
+        <img src="{{ block.settings.image | img_url: '1024x600' }}" class="w-full">
+        <div class=" absolute right-20 p-8 bg-beta-gray-dark" style="top:50%;-ms-transform:translateY(-50%);transform:translateY(-50%)">
+          <h2 class="text-white font-display uppercase text-base mb-2">{{block.settings.subtitle}}</h2>
+          <h3 class="text-white font-display uppercase text-4xl mb-4">{{block.settings.title}}</h3>
+          <p class="border border-2 rounded-sm border-gray-600 inline-block py-2 px-4 text-white"><a href="{{block.settings.url}}">More...</a></p>
+        </div>
+      {% endcase %}
+    </div>
+  {% endfor %}
+</div>

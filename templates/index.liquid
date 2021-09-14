@@ -1,0 +1,17 @@
+{% section "slider" %}
+<section class="mb-4">
+  <div class="container lg:max-w-screen-lg mx-auto">
+    <div class="grid grid-cols-12 gap-4">
+    {% for product in collections.frontpage.products limit:4 %}
+      <div class="col-span-12 lg:col-span-3">
+        <a href="{{ product.url | within: collection }}" class="products--frontpage-product__image">
+          <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" class="w-full mb-4">
+          {% unless product.available %}<span>sold out</span>{% endunless %}
+        </a>
+        <p class="mb-4"><a href="{{ product.url | within: collection }}">{{ product.title }}</a></p>
+        <p class="font-display text-base">{{ product.price | money }}</p>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+</section>

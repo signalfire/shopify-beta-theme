@@ -1,0 +1,45 @@
+<header class="mb-4">
+  <div class="py-4 border-b border-gray-100">
+    <div class="container lg:max-w-screen-lg mx-auto">
+      <div class="grid grid-cols-12 gap-4">
+        <div class="col-span-12 lg:col-span-3">
+          {% form 'currency' %}
+            {{ form | currency_selector: class: 'bg-gray-200 border-0', id: 'Submit'  }}
+          {% endform %}     
+        </div>
+        <div class="col-span-12 lg:col-span-6 text-center">
+          <h1 class="text-4xl font-bold font-display uppercase"><a href="/">{{ shop.name | upcase }}</a></h1>
+        </div>
+        <div class="col-span-12 lg:col-span-3">
+          <form action="/search" method="get" role="search" class="">
+            <input class="w-full bg-gray-200 border-0" type="text" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'common.header.search_placeholder' | t }}" maxlength="128" role="combobox" aria-haspopup="false" aria-autocomplete="both" autocomplete="off">
+          </form>          
+        </div>
+      </div>      
+    </div>
+  </div>
+  <div class="pt-4">
+    <div class="container lg:max-w-screen-lg mx-auto">
+      <div class="grid grid-cols-12 gap-4">
+        <div class="col-span-12 lg:col-span-9">
+          <a class="lg:hidden"><i class="fas fa-bars"></i></a>
+          <div class="">
+            <ul class="uppercase font-display text-base">
+              <li class="inline-block mr-2"><a href="/" title="Return to home">{{ 'common.header.home_label' | t }}</a></li>
+              {% for collection in collections %}
+                {% unless collection.handle == 'frontpage' %}
+                  <li class="inline-block mr-2"><a href="{{ collection.url }}" title="{{collection.title}}">{{ collection.title }}</a></li>
+                {% endunless %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="col-span-12 lg:col-span-3 text-right">
+          {% assign cart_item = 'common.header.cart_item' | t %}
+          {% assign cart_items = 'common.header.cart_items' | t %}
+          <a href="/cart" class="font-display uppercase text-base"><i class="fas fa-shopping-bag"></i> {{ cart.item_count }} {{ cart.item_count | pluralize: cart_item, cart_items }} </a>      
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

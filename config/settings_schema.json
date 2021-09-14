@@ -1,0 +1,30 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Themekit template theme",
+    "theme_version": "1.0.0",
+    "theme_author": "Shopify",
+    "theme_documentation_url": "https:\/\/github.com\/Shopify\/themekit",
+    "theme_support_url": "https:\/\/github.com\/Shopify\/themekit\/issues"
+  },
+  {
+    "name": "Social",
+    "settings": [
+      {
+        "type": "url",
+        "id": "facebook_url",
+        "label": "Facebook"
+      },
+      {
+        "type": "url",
+        "id": "twitter_url",
+        "label": "Twitter"
+      },
+      {
+        "type": "url",
+        "id": "instagram_url",
+        "label": "Instagram"
+      }
+    ]
+  }
+]

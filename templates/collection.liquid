@@ -1,0 +1,27 @@
+{% paginate collection.products by 8 %}
+  <section class="container lg:max-w-screen-lg mx-auto mb-4">
+    <div class="grid grid-cols-12 gap-4">
+      {% for product in collection.products %}
+        <div class="col-span-12 lg:col-span-3">
+          <a href="{{ product.url | within: collection }}" class="mb-4 block">
+            <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" class="w-full">
+            {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
+          </a>
+          <p class="mb-4"><a href="{{ product.url | within: collection }}">{{ product.title }}</a></p>
+          <p class="font-display text-base">{{ product.price | money }}</p>
+        </div>
+      {% else %}
+        <div class="col-span-12">
+          <p>no matches</p>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+  <section class="pagination mb-4">
+    <div class="container lg:max-w-screen-lg mx-auto">
+      {% if paginate.pages > 1 %}
+        {{ paginate | default_pagination }}
+      {% endif %}
+    </div>
+  </section>
+{% endpaginate %}
